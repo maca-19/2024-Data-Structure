@@ -206,73 +206,7 @@ int main()
 서로 __인접한 두 원소__ 를 검사하여 정렬하는 알고리즘
 
 ![버블정렬](https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F275F9A4A545095BD01)
-### 제자리 선택정렬 코드 - "20240822_code.c"
 
-```
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
-#define MAX_SIZE 10
-
-int list[MAX_SIZE];
-int n;
-
-void selSort(int list[], int n)
-{
-    int i, j, least, temp;
-    for (i = 0 ; i < n - 1 ; i++) {     //마지막 인덱스는 자신과 비교할 필요 없음 -> n - 1 까지 반복
-        least = i;      //최솟값을 첫번째 요소라고 가정
-        for (j = i + 1 ; j < n ; j++) {
-            if (list[j] < list[least])      //최솟값 비교
-                SWAP(list[i], list[j], temp);
-                least = j;
-        }
-    }
-}
-
-int main()
-{
-    int i;
-    n = MAX_SIZE;
-    srand(time(NULL));
-    for (i = 0 ; i < n ; i++)
-        list[i] = rand() % 100; // 난수 발생 범위 0 ~ 99
-    printf("** Selection Sort **\n\n");
-    printf("Before Sorting\n");
-    for (i = 0 ; i < n ; i++) // 정렬 전
-        printf("%d ", list[i]);
-    selSort(list, n); // 정렬
-    printf("\n\nAfter Sorting\n");
-    for (i = 0 ; i < n ; i++) // 정렬 후
-        printf("%d ", list[i]);
-    printf("\n");
-    return 0;
-}
-```
-
-[참고: https://gmlwjd9405.github.io/2018/05/06/algorithm-selection-sort.html](https://gmlwjd9405.github.io/2018/05/06/algorithm-selection-sort.html)
-
-### 이 코드의 시간복잡도 분석
-
-* 비교 횟수
-  * if 가 이중 for 문 안에 있다 -> n^2
-* 이동 횟수
-  * SWAP이 for 문 안에 있는데 SWAP 은 3개의 연산 -> 3 * (n - 1)
-* 안정성?
-
-
-
-
-<br></br>
-<!-- 2024-02-27 -->
-# 2024-08-27  4차시 - 삽입
-
-## 삽입정렬
-
-리스트의 모든 요소를 앞에서 부터 이미 __정렬된 부분과 비교하여 자신의 위치를 찾아 삽입__ 하는 정렬.
-
-![삽입정렬](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4AjYYdhM_rfCeM5yHNwQVu1RPgo0wBizOKq0ESl-n8F2AI5JgWr4DKAxI-Lphlt2LlZoLCtZv1bxHYnwoU0qefj38SWF2iOURAA3pvkVyoTZevA7i7PnKNDQzAHDgz0Tl6jtp3v0AaXA/s1600/%EC%82%AC%EC%9A%A9%EC%9E%90+%EC%A7%80%EC%A0%95+12.gif)
 
 ### 버블정렬 코드 - "20240827_code_A.c"
 
